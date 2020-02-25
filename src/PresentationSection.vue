@@ -7,7 +7,7 @@
       {{ title }}
     </cdr-text>
 
-    <cdr-tabs modifier="centered" class="pres-section-tabs" height="500px">
+    <cdr-tabs modifier="centered" class="pres-section-tabs" height="320px">
       <slot/>
     </cdr-tabs>
   </div>

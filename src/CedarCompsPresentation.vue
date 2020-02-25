@@ -27,7 +27,7 @@
       <div class="pres-section-tabs">
         <cdr-img src="http://placekitten.com/320/320"/>
         <cdr-list modifier="unordered">
-          <li>You may know me from such Slack channels as #cedar-user-support and #front-end-tech</li>
+          <li>You may know me from such Slack channels as #cedar-user-support</li>
           <li>Grew up in the Bay Area</li>
           <li>Studied politics and sociology at UC Santa Cruz</li>
           <li>Drove trucks and delivered mail before getting into web dev</li>
@@ -99,48 +99,80 @@
         <presentation-section title="Praxis"  id="praxis" class="paginated">
 
           <cdr-tab-panel name="Tokens">
-            tokens: semantic key value pairs that can be used for styling
-            (@rei/cdr-tokens)
+            <cdr-list modifier="unordered">
+              <li>
+                Semantic key value pairs that can be used for styling
+              </li>
+              <li>
+                Typography, Color, Spacing, Motion/Animation
+              </li>
+              <li>
+                Distributed as @rei/cdr-tokens, available as SCSS, LESS, JS, JSON, etc.
+              </li>
+              <li>
+                $cdr-color-text-primary-lightmode: #292929
+              </li>
+              <li>
+                $cdr-color-background-light: #f7f7f7
+              </li>
+            </cdr-list>
           </cdr-tab-panel>
 
           <cdr-tab-panel name="Utilities">
-            CSS classes that apply a cedar token to a given property
+
+            <cdr-list modifier="unordered">
+              <li>
+                Simple re-usable CSS classes
+              </li>
+              <li>
+                Distributed as part of the @rei/cedar component library
+              </li>
+              <li>
+                .cdr-align-text-center -> center the contents of an element
+              </li>
+              <li>
+                .cdr-display-sr-only -> make an element only visible to screen readers
+              </li>
+              <li>
+                .cdr-mb-space-one-x -> set the margin-bottom of an element to $cdr-space-one-x
+              </li>
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Elements">
-            (vue: @rei/cedar, scss: @rei/cedar-component-variables)
-            components that are basically native elements:
-            button
-            cta
-            link
-            text
-            checkbox
-            icon
-            radio
-            input
-            select
-            quote
-            caption
-            image
-
+            <cdr-list modifier="unordered">
+              <li>Components that are a Cedar wrapper around native elements</li>
+              <li>Only use these components if you want the Cedar look and feel</li>
+              <li>CdrButton, CdrCta, CdrLink, CdrText, CdrCheckbox, CdrIcon, CdrRadio, CdrInput, CdrSelect, CdrQuote, CdrCaption, CdrImg</li>
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Navigation">
-            navigation:
-            breadcrumb
-            pagination
-
+            <cdr-list modifier="unordered">
+              <li>Core navigational elements that do not have a native equivalent</li>
+              <li>CdrBreadcrumb, CdrPagination</li>
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Wrappers">
-            content wrappers:
-            card
-            modal
-            accordion
-            tabs
+            <cdr-list modifier="unordered">
+              <li>Components that provide a simple wrapper for presenting content</li>
+              <li>Cedar is only concerned with the "frame", not what goes inside</li>
+              <li>CdrCard, CdrModal, CdrAccordion, CdrTabs, CdrRow, CdrCol</li>
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Mixins">
-            Mostly the atomic elements! SCSS only. for weird uses only
+            <cdr-list modifier="unordered">
+              <li>SCSS mixins that can be used to apply Cedar styling to native elements in projects that cannot use the Vue Cedar components</li>
+              <li>Distributed as @rei/cedar-component-variables</li>
+              <li>Primarily covers the "atomic elements"</li>
+              <li>@include cdr-button-primary-mixin;</li>
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="SVG">
-            Just use cedar components, icons available otherwise.
+            <cdr-list modifier="unordered">
+              <li>Icon library that is maintainted by the Cedar design team</li>
+              <li>Distributed as @rei/cedar-icons</li>
+              <li>Includes raw SVG assets as well as a tool for generating sprite sheets</li>
+              <li>Most consumers should just use the inline icons that come with @rei/cedar</li>
+            </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
 
@@ -166,44 +198,82 @@
       <div>
 
         <presentation-section title="Tips'n'Tricks">
-          <!--
-          # general tips for making vue components (6min)
-     -->
           <cdr-tab-panel name="Slots">
-            - use slots for content wherever possible, as it provides the most flexibility. making decisions and naming stuff is hard, its easier to just let people do whatever they want. "header", "content", anywhere yr dumping a bunch of text, or an image. Rather than have an element/component hardcoded in your component, let the dev control it.
-            - this flexibility allows us to share common pieces of code without butting up against one another. For example, `ProductCard` component has a title. If its hardcoded to use an h3 cdr-text with a certain modifier, might run into issues if someone wants to change that, or pass an icon into the title, or do all sort of other things. However if you simply provide a title slot can support all of these use cases while still sharing the common "ProductCard" functionality. If the title functionality started to get too complex or needed to be consistent, you might make a `ProductTitle` component that users can pass into that title slot.
+            <cdr-list modifier="unordered">
+              <li>Use slots for content whenever possible</li>
+              <li>Allows consumers to pass in another component as a prop</li>
+              <li>Especially useful for text content</li>
+              <li>Ensures component can be re-used without modification</li>
+              EXAMPLE: product tile title
+            </cdr-list>
+
 
           </cdr-tab-panel>
           <cdr-tab-panel name="Events">
-            - emit events rather than binding functions. general react/vue functional component practice. props down events up.
+            <cdr-list modifier="unordered">
+              <li>Emit events rather than binding functions or hardcoding behavior</li>
+              <li>Components should accept props, emit events, and have no side effects</li>
+              <li>Means components are testable, understandable, modular</li>
+              EXAMPLE: UGC thing?
+            </cdr-list>
 
           </cdr-tab-panel>
           <cdr-tab-panel name="Data">
-            - your component should not know what vuex or ajax are. it probably shouldn't know about window. avoid side effects, let your app handle that stuff and keep the component simple.
 
+            <cdr-list modifier="unordered">
+              <li>Flux architecture pattern</li>
+              <li>Your component should not know where it's props/data is coming from</li>
+              <li>Your component should not know what is happening to the events it emits</li>
+              <li>Your component should never know what Vuex or AJAX are</li>
+              ex: Micro-site fetches data, passes it to component.
+              user interacts with component, and the component emits an event.
+              micro-site handles the event, passes new data to the component
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="State">
-              - avoid private internal state when possible, expose a prop and give it a default.
+            <cdr-list modifier="unordered">
+              <li>Avoid private internal state whenever possible</li>
+              <li>Eventually, someone is going to need to control that value</li>
+              <li>Expose a property and give it a default value</li>
+              ex: active tab index tabs
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Size">
-            - make the smallest component possible. the bigger and more complex a component is, the harder it is to manage and update and customize. prime example: CdrDataTable. we are in the process of moving that component to fedpack and replacing it with a more generic and flexible CdrTable.
 
+            <cdr-list modifier="unordered">
+              <li>Make the smallest component possible</li>
+              <li>The bigger the component, the harder it is to re-use</li>
+              <li>Break big component into smol components</li>
+              <li>Do not build a "library" (though if you must, talk to me)</li>
+              ex: activityCard. too specific. what we really needed was like "activityCardDetails" for the content
+            </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Shape">
-            - do not strictly bind your component to the API of other libraries. extends: CdrButton. only accept/bind attrs that matter to your component. otherwise any time the cedar API changes, your component will need a major version bump. either use a slot, or map sensible prop names from your component to the sub-component.
-            - don't build a library. 1 thing per package. it is extremely difficult to build a library that exports multiple components like cedar/or a gigantic suite of functions with shared helpers like lodash, and ensure that consumers of your library will be able to tree-shake out any un-used imports. if you do need to do this for some reason, come talk to me. this is not something you can simply google how to do.
+            <cdr-list modifier="unordered">
+              <li>Do not strictly bind your component to the API of other libraries</li>
+              <li>Do not use the Vue `extends` property to modify Cedar components</li>
+              <li>Do not design the API of your component to match your exact business needs</li>
+              <li>Expose an API that makes sense for your component, translate those props for any sub-components</li>
+            </cdr-list>
 
           </cdr-tab-panel>
 
           <cdr-tab-panel name="Semantics">
-            - USE TOKENS OVER VARIABLES.
-            - but if you do have unique tokens/vars, MAKE THEM SEMANTIC!
-            - Other people will consume the API of yr shared package, naming things is hard but important!
-          </cdr-tab-panel>
+
+            <cdr-list modifier="unordered">
+              <li>Use cedar tokens whenever possible when styling rather than creating custom variables</li>
+              <li>If your project does have unique values that are not in cedar, create semantic variables for those styles so they can be updated later</li>
+              <li>semantic variable: $detail-card-background-color</li>
+              <li>generic variable: $color-black</li>
+            </cdr-list>
+            </cdr-tab-panel>
 
           <cdr-tab-panel name="Purpose">
-            - sometimes you need a utility function more than a component. (grid-list)
-            - don't make a shared component until it's time to re-use that component on another site. Taking a .vue component out of a micro-site and putting it in fedcomp has gotten very easy. Most of the work is writing unit tests and documenting the props/events. If you put things into fedcomp immediately you run the risk of spreading a pattern that does not scale.
+
+            <cdr-list modifier="unordered">
+              <li>Sometimes you need a utility function more than a component</li>
+              <li>Don't make a shared component until there is an opportunity to re-use it</li>
+            </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
 
@@ -219,146 +289,73 @@
         End-To-End Example
       </template>
       <div>
-        <presentation-section title="package.json" class="paginated-active" id="package">
+        <presentation-section title="package.json" class="paginated paginated-active" id="package">
 
-
-          <!-- # package.json (5 min)
-
-          webpack/rollup/babel dev/test config all handled by febs now. Follow their config steps and yr good. package.json is the last big gray area where you might run into trouble.
-
-
-          `"version": "0.0.1",`
-          - Semver. fixed a bug? patch. add a new features? minor. Changed something public? major.
-          communicates to consumers whether or not an update may break their app. UNIT TESTS ARE GREAT. testing directly in consumers is also good. bitbucket lets you see how people are using your component.
-
-          - use npm version patch/minor/major rather than manually bumping package version.
-          then `git push --follow-tags`. tags your version, makes the commit have the version number in it. makes it MUCH easier to publish fixes for older versions, figure out what code is in what evrsion.
-          commit message: `version bump` is almost completely useless
-
-
-
-          ```
-          "main": "dist/index.js",
-          "module": "dist/index.esm.js",
-          "style": "dist/index.css",
-          ```
-          - un-official package.json entries which are used by rollup/webpack when building your app.
-          main -> CJS. can run anywhere. vanilla js.
-          module -> ESM. needs special build, but more optimizable. modules allow tree shaking, static analysis, etc.
-          esm.js not mjs.
-          style -> points to the css file for your component. postcss-import will handle `@import url('@rei/your-component')` turning into `@import url('@rei/your-component/dist/index.css')`
-
-          - These three lines could be a whole presentation unto themselves, you can mostly trust the magic. Use import/export for JS and @import url() for .css files and yr good. (cdr-tokens scss exception)
-
-
-
-
-          ```
-          "files": [
-            "dist"
-          ],
-          ```
-          What files get published as part of your component.
-          probably only need `dist`
-          package.json and readme.md included by default (???)
-          ```
-          "browserslist": "extends @rei/browserslist-config",
-          ```
-          communicates to babel/babel-env/babel-preset-env what polyfills to include based on the browsers we support.
-          febs handles all that magic for you, just don't worry about it
-          ???? this is an area that probably needs some management/FED attention
-
-
-
-
-
-
-
-            "scripts": {
-
-          TODO: update these with new febs pattern
-          ```
-          "dev:server": "febs dev",
-          "dev:build": "cross-env NODE_ENV=dev BABEL_ENV=es rollup -c --watch",
-          "dev:clean": "rimraf dist && npm run dev",
-          "dev": "npm-run-all -p dev:build dev:server",
-          "start": "npm run dev",
-          ```
-          - dev build.
-          febs first compiles your source code using rollup and outputs the content to dist
-          febs then compiles your local-development.js file using webpack and starts up a web server
-          - The reasons we use both rollup and webpack are myriad. short version is that rollup is good at some things and bad at others and vice versa, maybe webpack5 will save us.
-
-          - Recommend you put any demo logic into a Demo.vue file, that way it can be used independent of the dev server (cedar would like to create a ui toolkit and demo page for everything in fedpack that is being maintained, having a Demo.vue file we can pull in would make that process a lot easier)
-
-
-          `"prepare": "npm run build"`
-          This will let you use your package as a git dependency for testing/development.
-
-          replace version number with `git+CLONE_URL#BRANCH-NAME`
-
-          "@rei/some-package": "git+https://git.rei.com/scm/fedcomp/some-package.git#cool-new-feature"
-
-          run `npm install`. NOTE you must use a branch name and not a hash to bypass issues with jenkins.
-          this means if you push new commits to your branch and want to pull them in, you will first need to
-          - TODO: make a node module that does this
-          `rm -rf node_modules/@rei/some-package && rm package-lock.json` to force npm to download the new commits. Otherwise the package-lock will be pinned to whatever the most recent commit was when you ran npm install.
-
-          ```
-            "dependencies": {
-              "@babel/runtime": "^7.7.4",
-              "@babel/runtime-corejs3": "^7.7.4",
-              "@rei/cedar": "^4.0.0"
-            },
-          ```
-          Things needed at runtime. Anything you import and use in your component should probably be listed here.
-          BABEL RUNTIME -> polyfills to ensure code works in all supported browsers. this configuration ensures that when you build yr component, those polyfills are not bundled directly into yr code. lets you de-dupe them.
-          @babel dependencies resolve to 1 version, allowing components to share helpers rather than each bundling copies of polyfills
-
-          ```
-            "peerDependencies": {
-              "vue": "^2.6.10"
-            },
-          ```
-
-
-          ```
-            "devDependencies": {
-              "@babel/plugin-transform-runtime": "^7.7.4",
-              "@babel/preset-env": "^7.7.4",
-              "@babel/runtime": "^7.7.4",
-              "@rei/browserslist-config": "^1.0.4",
-              "@rei/cdr-tokens": "^3.0.0"
-              "@rei/febs": "^6.0.0",
-              "@rei/vunit": "^2.0.0",
-              "@vue/test-utils": "^1.0.0-beta.31"
-            },
-          ```
-          Things needed at build time. Babel tools, testing stuff, etc.
-
-     -->
-
-          <cdr-tab-panel name="Slots">
-            Tab 4 Content
+          <cdr-tab-panel name="version">
+            <cdr-list modifier="unordered">
+              <li>`"version": "0.0.1",`</li>
+              <li>follow Semver!</li>
+              <li>use `npm version patch/minor/major` rather than manually bumping package version</li>
+              <li>use `git push --follow-tags` to push up tags</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 1 Content
+          <cdr-tab-panel name="exports">
+            <cdr-list modifier="unordered">
+              <li>main/module/style communicate to rollup/webpack what files to load</li>
+              <li>cjs, esm, css. there are others</li>
+              <li>these are being set by the febs build</li>
+              <li>files: dist, only publish contents of dist (and package.json, README, etc.)</li>
+            </cdr-list>
+
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 2 Content
+          <cdr-tab-panel name="dev">
+            <cdr-list modifier="unordered">
+              <li>Scripts mostly wrapping febs commands</li>
+              <li>dev build: rollup server and webpack demo</li>
+              <li>webpack/rollup woes</li>
+              <li>Demo.vue to isolate demo logic, make it easier for cedar :3</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 3 Content
+          <cdr-tab-panel name="prepare">
+            <cdr-list modifier="unordered">
+              <li>`"prepare": "npm run build"`
+                              "@rei/some-package": "git+https://git.rei.com/scm/fedcomp/some-package.git#cool-new-feature"</li>
+              <li>Lets you load yr package as a git dependency</li>
+              <li>In a micro-site or another component, you can point to a branch of yr package and load it as if it were published</li>
+              <li>However, since dist is not checked into repo, you must add this prepare script so it is created</li>
+              <li>NOTE about updating git deps</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Mostly the atomic elements! SCSS only. for weird uses only
+          <cdr-tab-panel name="deps">
+            <cdr-list modifier="unordered">
+              <li>deps are runtime dependencies. want them to be resolved at the top</li>
+              <li>dev deps are buildtime deps, test, dev stuff. you dont want them included in yr module.</li>
+              <li>deps will not be compiled into yr dist folder. thats good.</li>
+              <li>babel magic: polyfills can be shared. deps resolve to as few versions as possible (SEMVER!)</li>
+              <li>browserslist-config is what controls what polyfills are requested. THIS PROBABLY NEEDS SOME OVERSIGHT</li>
+            </cdr-list>
+
+
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 4 Content
+
+          <cdr-tab-panel name="CSS">
+            <cdr-list modifier="unordered">
+              <li>just as babel/npm handles resolving JS deps, can do same for CSS</li>
+              <li>@import url() for .css files you depend on. if yr using a cedar component or a shared component.</li>
+              <li>@import '~@rei/cdr-tokens/etc.' or scss tokens/variables.</li>
+            </cdr-list>
+
+
+          </cdr-tab-panel>
+          <cdr-tab-panel name="ESM">
+            <cdr-list modifier="unordered">
+              <li>use import/export everywhere</li>
+              <li>require/module.exports might break tree shaking, or webpack completely</li>
+            </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
 
-        <presentation-section title="end-to-end" class="paginated" id="example">
+        <presentation-section title="end-to-end" class="paginated" id="e2e">
           <!--
           # end to end (3min)
 
@@ -388,23 +385,47 @@
           Whether or not our current architecture is the best, by adhering to a common architecture we make it easier to update as a group, turn common patterns into libraries (@rei/component template turned into febs component build).
 
           if there is some way i can make it easier for you to use cedar i want to know so i can represent your viewpoint to the rest of my team. -->
-          <cdr-tab-panel name="Slots">
-            Tab 4 Content
+          <cdr-tab-panel name="component">
+
+            <cdr-list modifier="unordered">
+              <li>uses tokens for styling </li>
+              <li>uses cedar components were applicable </li>
+              <li>imports cedar css for components used</li>
+              <li>dist contents</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 1 Content
+          <cdr-tab-panel name="another component">
+
+            <cdr-list modifier="unordered">
+              <li>does everything the first component did</li>
+              <li>also imports the first component</li>
+              <li>dist contents</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 2 Content
+          <cdr-tab-panel name="fedpage">
+
+            <cdr-list modifier="unordered">
+              <li>glues together several shared components</li>
+              <li>does everything a component should</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 3 Content
+          <cdr-tab-panel name="micro-site">
+
+            <cdr-list modifier="unordered">
+              <li>actually renders and serves the fedpage</li>
+              <li>back end data that is passed to our front-end application</li>
+              <li>this is where to do global things. never know where yr component/page might end up. don't assume!</li>
+            </cdr-list>
           </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Mostly the atomic elements! SCSS only. for weird uses only
-          </cdr-tab-panel>
-          <cdr-tab-panel name="etc">
-            Tab 4 Content
+          <cdr-tab-panel name="end user">
+
+            <cdr-list modifier="unordered">
+              <li>gets the smallest possible bundle for their front-end application</li>
+              <li>this only works if everything is compiled in the same environment</li>
+              <li>this micro-site pattern is at odds with the sort of "global" patterns we used previously</li>
+              <li>how to handle things like marketing content, site banners, header/footer/nav</li>
+              <li>these patterns are evolving, and may not be perfect, but adhering to them in the short term will make long term arch alignment possible</li>
+            </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
 
@@ -454,8 +475,9 @@ export default {
     },
 
     exNav(num, url, e) {
+      console.log('hey', num, url)
       e.preventDefault();
-      document.getElementById('example').classList.toggle('paginated-active')
+      document.getElementById('e2e').classList.toggle('paginated-active')
       document.getElementById('package').classList.toggle('paginated-active')
     },
   }
