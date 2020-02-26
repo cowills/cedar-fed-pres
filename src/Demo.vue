@@ -1,5 +1,5 @@
 <template>
-  <CedarCompsPresentation :title="title" :description="description" />
+  <CedarCompsPresentation :media="media"/>
 </template>
 
 <script>
@@ -9,6 +9,9 @@ export default {
   name: 'Demo',
   components: {
     CedarCompsPresentation
+  },
+  props: {
+    media: Object,
   },
   data() {
     return {

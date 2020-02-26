@@ -1,16 +1,10 @@
-// TODO move dev assets to dev folder and serve from there
 module.exports = {
-  resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-    },
-  },
   module: {
     rules: [
       {
-        test: /\.mjs$/,
-        type: "javascript/auto",
-      },
-    ],
-  },
+        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
+        loader: 'file-loader'
+      }
+    ]
+  }
 };

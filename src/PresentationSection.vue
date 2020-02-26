@@ -1,13 +1,13 @@
 <template>
   <div class="cdr-align-text-center pres-section">
-    <cdr-text
+    <!-- <cdr-text
       tag="h3"
       modifier="heading-serif-strong-500"
     >
       {{ title }}
-    </cdr-text>
+    </cdr-text> -->
 
-    <cdr-tabs modifier="centered" class="pres-section-tabs" height="320px">
+    <cdr-tabs modifier="centered" class="pres-section-tabs" height="640px">
       <slot/>
     </cdr-tabs>
   </div>
@@ -38,8 +38,13 @@ export default {
   width: 640px;
   margin: 0 auto;
   text-align: left;
+  // padding: 8px 0;
   // probably add default padding/centering to content here
 
+}
+
+.cdr-tabs__content-container_4\.0\.2 {
+  margin-top: 16px;
 }
 
 </style>
