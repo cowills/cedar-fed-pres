@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: make the first thing look like a "slide", click something to kick it off -->
   <div class="cdr-align-text-center pres-container">
     <div class="welcome">
       <cdr-text
@@ -68,6 +67,17 @@
               <li>accessibility, usability: consistency makes it easier for everyone.</li>
               <li>marketing: that REI feel. cozy, chill</li>
               <li>the dream: being able to evolve the core set of design system values and have everything inherit from it</li>
+              <li>an example: CdrInput
+                <cdr-input
+                  v-model="inputModel"
+                  label="Im a cool input"
+                  placeholder="CdrInput"
+                  @input="validateInput"
+                />
+                <span v-if="inputAlert" style="color: red;">
+                  Whats so funny, huh?
+                </span>
+              </li>
             </cdr-list>
           </cdr-tab-panel>
 
@@ -139,27 +149,138 @@
           <cdr-tab-panel name="Elements">
             <cdr-list modifier="unordered">
               <li>Components that are a Cedar wrapper around native elements</li>
+              <li>Accessibility and consistency</li>
               <li>Only use these components if you want the Cedar look and feel</li>
-              <li>CdrButton, CdrCta, CdrLink, CdrText, CdrCheckbox, CdrIcon, CdrRadio, CdrInput, CdrSelect, CdrQuote, CdrCaption, CdrImg</li>
-              <cdr-img :src="media.ele1" style="width: 240px; float: left;"/>
+              <!-- <li>CdrButton, CdrCta, CdrLink, CdrText, CdrCheckbox, CdrIcon, CdrRadio, CdrInput, CdrSelect, CdrQuote, CdrCaption, CdrImg</li> -->
+              <cdr-img
+                src="https://www.rei.com/assets/drsp/2018/q2/campaign/summer/chapter-4/rei-backpacking-bundle/live.jpg"
+                alt="REI employees building trails during a stewardship event"
+                width="240px"
+              /><cdr-button>Add to cart</cdr-button>
+              <icon-account-profile />
+              <cdr-cta
+                href="https://rei.com"
+                cta-style="dark"
+              >
+                Explore cedar
+              </cdr-cta>
+              <!-- <cdr-caption
+                summary="Testing and validating the final fit of the 2018/2019 Tecnica ski boot collection during the September 2017 focus group in Park City, Utah."
+                credit="Image Credit: Blizzard Tecnica"/> -->
+              <cdr-checkbox v-model="ex1"
+              style="display: inline;">Default checkbox 1</cdr-checkbox>
+              <cdr-link
+                  href="https://www.rei.com/learn/expert-advice/ten-essentials.html">
+                    the Ten Essentials
+                </cdr-link>
+                <!-- <cdr-quote
+                    tag="aside"
+                    modifier="pull"
+                    summary="Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has."
+                  /> -->
+                  <cdr-radio
+                name="default-example"
+                custom-value="ex1"
+                v-model="ex1"
+                style="display: inline;"
+              >Default radio 1</cdr-radio>
+
+
+
+<cdr-input
+  v-model="defaultModel"
+  label="Input label"
+  placeholder="Placeholder input"
+/>
+
+<cdr-select
+  v-model="defaultModel"
+  label="Select label"
+  prompt="Prompt text"
+  :options="defaultOptions"
+/>
+<cdr-text modifier="heading-serif-1200">
+   When you gear up, we give back
+ </cdr-text>
+
+              <!-- <cdr-img :src="media.ele1" style="width: 240px; float: left;"/>
               <cdr-img :src="media.ele2" style="width: 240px; float: left;"/>
-              <cdr-img :src="media.ele3" style="width: 480px; float: left;"/>
+              <cdr-img :src="media.ele3" style="width: 480px; float: left;"/> -->
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Navigation">
             <cdr-list modifier="unordered">
               <li>Core navigational elements that do not have a native equivalent</li>
-              <li>CdrBreadcrumb, CdrPagination, CdrRating</li>
-              <cdr-img :src="media.nav1" style="width: 480px;"/>
-              <cdr-img :src="media.nav2" style="width: 480px;"/>
+              <li>More complex, but opinionated for a reason</li>
+
+              <cdr-breadcrumb
+                :items="[
+                  {item:{url:'', name: 'Clothing'}},
+                  {item:{url:'', name: 'Clothing Accessories'}},
+                  {item:{url:'', name: 'Snowboard Gloves and Mittens'}},
+                  {item:{url:'', name: 'Gloves'}},
+                  {item:{url:'', name: 'Insulated Gloves'}},
+                ]"
+              />
+              <cdr-rating rating="0" count="0" />
+                            <cdr-pagination
+                              :pages="pages"
+                              :total-pages="5"
+                              v-model="page"
+                            />
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Wrappers">
             <cdr-list modifier="unordered">
               <li>Components that provide a simple wrapper for presenting content</li>
               <li>Cedar is only concerned with the "frame", not what goes inside</li>
-              <li>CdrCard, CdrModal, CdrAccordion, CdrTabs, CdrRow, CdrCol</li>
-              <cdr-img :src="media.cont1" style="width: 480px;"/>
+              <li>This gives designers and developers the flexibility to "compose" things out of re-usable elements</li>
+              <li>As patterns emerge, they can be turned into shared components or possibly added to Cedar</li>
+              <!-- <cdr-img :src="media.cont1" style="width: 480px;"/> -->
+              <cdr-button
+              @click="opened = true"
+              aria-haspopup="dialog"
+              >Show Examples
+              </cdr-button>
+
+              <cdr-modal
+              label="Add to Cart"
+              :opened="opened"
+              @closed="opened = false"
+              aria-described-by="description"
+              >
+              <template slot="title">
+                <cdr-text
+                  tag="h3"
+                  style="font-family: comic sans ms;"
+                >Title Slot that you have full control over 👩‍🔧 <icon-service-shop/>
+                </cdr-text>
+              </template>
+              <div>
+                ANYTHING can be passed into a wrapper component
+                <cdr-accordion
+                  id="default-1"
+                  :opened="default1"
+                  @accordion-toggle="default1 = !default1"
+                >
+                  <template slot="label">
+                    Probably don't put an accordion into a modal though 😬
+                  </template>
+                  <cdr-row justify="center">
+                    <cdr-col span="3">
+                      <div>left col</div>
+                    </cdr-col>
+                    <cdr-col span="3">
+                      <cdr-card>I'm a cdr-card! <cdr-button>lol</cdr-button></cdr-card>
+                    </cdr-col>
+                    <cdr-col span="3">
+                      <div>right col</div>
+                    </cdr-col>
+                  </cdr-row>
+                </cdr-accordion>
+
+              </div>
+              </cdr-modal>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Mixins">
@@ -282,13 +403,19 @@
       </template>
       <div>
         <presentation-section title="package.json" class="paginated paginated-active" id="package">
-
+          <cdr-tab-panel name="tooling">
+            <cdr-list modifier="unordered">
+              <li>Use @rei/febs for your build and @rei/vunit for testing</li>
+              <li>Your micro-site might need to be customized, but rarely should a shared component deviate from the standard build system</li>
+              <li>Having a consistent architecture makes it easier to incrementally improve the system</li>
+            </cdr-list>
+          </cdr-tab-panel>
           <cdr-tab-panel name="version">
             <cdr-list modifier="unordered">
               <li>Follow Semver</li>
               <li>Use `npm version patch/minor/major` rather than manually bumping package version</li>
               <li>Use `git push --follow-tags` to push up tags</li>
-              <cdr-img :src="media.vers" style="width: 640px;"/>
+              <cdr-img :src="media.vers" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="exports">
@@ -297,7 +424,7 @@
               <li>cjs, esm, css. there are others</li>
               <li>these are being set by the febs build</li>
               <li>files: dist, only publish contents of dist (and package.json, README, etc.)</li>
-              <cdr-img :src="media.main" style="width: 640px;"/>
+              <cdr-img :src="media.main" style="width: 480px;"/>
             </cdr-list>
 
           </cdr-tab-panel>
@@ -307,29 +434,26 @@
               <li>dev build: rollup server and webpack demo</li>
               <li>webpack/rollup woes</li>
               <li>Demo.vue to isolate demo logic, make it easier for cedar :3</li>
-              <cdr-img :src="media.dev" style="width: 640px;"/>
+              <cdr-img :src="media.dev" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="prepare">
             <cdr-list modifier="unordered">
-              <li>`"prepare": "npm run build"`
-                              "@rei/some-package": "git+https://git.rei.com/scm/fedcomp/some-package.git#cool-new-feature"</li>
               <li>Lets you load yr package as a git dependency</li>
               <li>In a micro-site or another component, you can point to a branch of yr package and load it as if it were published</li>
               <li>However, since dist is not checked into repo, you must add this prepare script so it is created</li>
-              <li>NOTE about updating git deps</li>
               <cdr-img :src="media.gitdep" style="width: 640px;"/>
-              <cdr-img :src="media.prepare" style="width: 640px;"/>
+              <cdr-img :src="media.prepare" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="deps">
             <cdr-list modifier="unordered">
-              <li>deps are runtime dependencies. want them to be resolved at the top</li>
-              <li>dev deps are buildtime deps, test, dev stuff. you dont want them included in yr module.</li>
-              <li>deps will not be compiled into yr dist folder. thats good.</li>
-              <li>babel magic: polyfills can be shared. deps resolve to as few versions as possible (SEMVER!)</li>
-              <li>browserslist-config is what controls what polyfills are requested. THIS PROBABLY NEEDS SOME OVERSIGHT</li>
-              <cdr-img :src="media.deps" style="width: 640px;"/>
+              <li>Dependencies are needed at runtime, we want them to be resolved at the top (babel polyfills, shared components, utilities)</li>
+              <li>DevDependencies are not needed at runtime (test, lint, dev, build)</li>
+              <li>Dependencies will not be bundled into yr `/dist` folder, allowing the consuming application to resolve them</li>
+              <li>Only get 1 copy of each polyill, cedar component, lodash helper, etc. that are used in your micro-site</li>
+              <li>browserslist controls which polyfills to include, needs more oversight</li>
+              <cdr-img :src="media.deps" style="width: 480px;"/>
             </cdr-list>
 
 
@@ -337,9 +461,9 @@
 
           <cdr-tab-panel name="ESM">
             <cdr-list modifier="unordered">
-              <li>use import/export everywhere</li>
-              <li>require/module.exports might break tree shaking, or webpack completely</li>
-              <!-- <cdr-img :src="media.jssrc" style="width: 640px;"/> -->
+              <li>Just use `import/export` (ESM) everywhere</li>
+              <li>Using `require/module.exports` (CJS) might break tree shaking</li>
+              <li>Mixing ESM and CJS can break Webpack completely</li>
               <cdr-img :src="media.jsbuilt" style="width: 640px;"/>
             </cdr-list>
           </cdr-tab-panel>
@@ -348,7 +472,7 @@
             <cdr-list modifier="unordered">
               <li>@import url() for .css files you depend on, whether it is Cedar or another shared component</li>
               <li>@import '~@rei/cdr-tokens/etc.' for scss tokens/variables</li>
-
+              <li>Webpack/NPM will resolve which version to load, so practice good semver</li>
               <!-- <cdr-img :src="media.csssrc" style="width: 640px;"/> -->
               <cdr-img :src="media.cssbuilt" style="width: 640px;"/>
             </cdr-list>
@@ -364,14 +488,18 @@
 </template>
 
 <script>
-import { CdrText, CdrTabs, CdrTabPanel, CdrPagination, CdrList, CdrButton, CdrImg, CdrAccordion } from '@rei/cedar';
+import { CdrText, CdrTabs, CdrTabPanel, CdrPagination, CdrCard, CdrRow, CdrCol, CdrList, CdrModal, CdrButton, CdrImg, CdrAccordion, IconServiceShop, CdrInput, CdrLink, CdrRadio, CdrCheckbox, CdrQuote, CdrSelect, CdrRating, CdrBreadcrumb, IconAccountProfile, CdrCta, CdrCaption } from '@rei/cedar';
 import PresentationSection from './PresentationSection.vue';
 export default {
   name: 'MainComponent',
   components: {
-    CdrText,
+    CdrLink, CdrRadio, CdrCheckbox, CdrQuote, CdrSelect, IconAccountProfile, CdrCta, CdrCaption,IconServiceShop,
+    CdrRating, CdrBreadcrumb,
+    CdrText, CdrModal,
+    CdrCard, CdrRow, CdrCol,
     CdrTabPanel,
     CdrList,
+    CdrInput,
     CdrButton,
     CdrImg,
     CdrAccordion,
@@ -383,18 +511,28 @@ export default {
   },
   data() {
     return {
+      inputModel: '',
+      inputAlert: false,
       intro: false,
       whatis: false,
+      default1: false,
       dists: false,
+      opened: false,
+      ex1: true,
+      defaultModel: 'foo',
+      defaultOptions: ['foo', 'bar', 'baz'],
       tips: false,
       example: false,
       introPage: 1,
       introPages: [{page: 1, url: 'theory'}, {page: 2, url: 'praxis'}],
-      exPage: 1,
-      exPages: [{page: 1, url: 'package'}, {page: 2, url: 'example'}]
+      page: 1,
+      pages: [{page: 1, url: '1'}, {page: 2, url: '2'}, {page: 3, url: '3'}, {page: 4, url: '4'}, {page: 5, url: '5'}]
     }
   },
   methods: {
+    validateInput(x) {
+      this.inputAlert = (x === 'lol');
+    },
     // introNav(num, url, e) {
     //   e.preventDefault();
     //   document.getElementById('theory').classList.toggle('paginated-active')

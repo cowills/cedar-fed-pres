@@ -17,23 +17,23 @@ import Demo from './src/Demo.vue';
 import intro from './static/intro.png';
 import actcard from './static/actcard.png';
 import compvar from './static/compvar.png';
-import cont1 from './static/cont1.png';
-import cont2 from './static/cont2.png';
+// import cont1 from './static/cont1.png';
+// import cont2 from './static/cont2.png';
 import cssbuilt from './static/cssbuilt.png';
 import csssrc from './static/csssrc.png';
 import deps from './static/deps.png';
 import dev from './static/dev.png';
-import ele1 from './static/ele1.png';
-import ele2 from './static/ele2.png';
-import ele3 from './static/ele3.png';
+// import ele1 from './static/ele1.png';
+// import ele2 from './static/ele2.png';
+// import ele3 from './static/ele3.png';
 import gitdep from './static/gitdep.png';
 import icons from './static/icons.png';
 import jsbuilt from './static/jsbuilt.png';
 import jssrc from './static/jssrc.png';
 import main from './static/main.png';
-import nav1 from './static/nav1.png';
-import nav2 from './static/nav2.png';
-import nav3 from './static/nav3.png';
+// import nav1 from './static/nav1.png';
+// import nav2 from './static/nav2.png';
+// import nav3 from './static/nav3.png';
 import prepare from './static/prepare.png';
 import slots from './static/slots.png';
 import tokens from './static/tokens.png';
@@ -66,15 +66,15 @@ new Vue({
         intro,
         actcard,
         compvar,
-        cont1,
-        cont2,
+        // cont1,
+        // cont2,
         cssbuilt,
         csssrc,
         deps,
         dev,
-        ele1,
-        ele2,
-        ele3,
+        // ele1,
+        // ele2,
+        // ele3,
         flux,
         state,
         semantics,
@@ -87,9 +87,9 @@ new Vue({
         jsbuilt,
         jssrc,
         main,
-        nav1,
-        nav2,
-        nav3,
+        // nav1,
+        // nav2,
+        // nav3,
         prepare,
         slots,
         tokens,
