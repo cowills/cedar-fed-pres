@@ -29,13 +29,12 @@
         <cdr-img :src="media.intro" style="width: 480px;"/>
         <cdr-list modifier="unordered">
           <li>You may know me from such Slack channels as #cedar-user-support</li>
-          <li>Grew up in the Bay Area</li>
+          <li>Grew up in the Bay Area, moved to Seattle 4 years ago</li>
           <li>Studied politics and sociology at UC Santa Cruz</li>
           <li>Drove trucks and delivered mail before getting into web dev</li>
           <li>Passionate about music</li>
           <li>Previously worked at Amazon, Capital One, a consulting agency, REI Experiences</li>
-          <li>Focused on the Cedar build system/API/architecture</li>
-          <li>I want to make Cedar as easy to use as possible</li>
+          <li>Focused on the Cedar build system</li>
         </cdr-list>
 
       </div>
@@ -63,11 +62,12 @@
 
           <cdr-tab-panel name="Why we are like this">
             <cdr-list modifier="unordered">
-              <li>flexibility, atomicity, modularity. enable as many use cases as possible, elevate patterns that emerge</li>
-              <li>accessibility, usability: consistency makes it easier for everyone.</li>
-              <li>marketing: that REI feel. cozy, chill</li>
-              <li>the dream: being able to evolve the core set of design system values and have everything inherit from it</li>
-              <li>an example: CdrInput
+              <li>Flexibility, Atomicity, Modularity: smaller and simpler elements enable as many use cases as possible, and as patterns emerge they can be elevated</li>
+              <li>Accessibility, Usability, Marketing: having a consistent look and feel to REI properties makes them easier to use and builds brand familiarity</li>
+              <li>The Goal: being able to update the core values that the system is built on in one place and have everything at REI inherit that change</li>
+              <li>An Example: CdrInput
+
+                <hr/>
                 <cdr-input
                   v-model="inputModel"
                   label="Im a cool input"
@@ -78,26 +78,16 @@
                   Whats so funny, huh?
                 </span>
               </li>
-            </cdr-list>
-          </cdr-tab-panel>
-
-          <cdr-tab-panel name="What we are not">
-            <cdr-list modifier="unordered">
-              <li>Cedar is not a front-end framework or build system</li>
-              <li>Cedar is not an architectural pattern</li>
-              <li>Cedar is not a utility library</li>
-              <li>Cedar is not a plug and play solution</li>
-              <li>Cedar is not a global library that can "push" out updates</li>
+              <!-- <cdr-img :src="media.curb" width="320px;"/> -->
             </cdr-list>
           </cdr-tab-panel>
 
           <cdr-tab-panel name="What you need to know">
             <cdr-list modifier="unordered">
-              <li>You should use Cedar as much as possible</li>
-              <li>You must use Cedar semantically</li>
-              <li>Sometimes your app will have unique styling and that is OK</li>
-              <li>Using Cedar incorrectly is worse than not using it at all</li>
-              <li>You can always ask us to take a look</li>
+              <li>Cedar is not a global library (like cedar1) that can be loaded everywhere and "push" out updates</li>
+              <li>You should use Cedar as much as possible, but you must use Cedar semantically</li>
+              <li>Cedar is not a plug and play solution, and sometimes your app will have unique styling and that is OK</li>
+              <li>Using Cedar incorrectly is worse than not using it at all, you can always ask us to take a look at your PR</li>
             </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
@@ -143,7 +133,9 @@
               <li>
                 Distributed as part of the @rei/cedar component library
               </li>
-              <cdr-img :src="media.util1" style="width: 480px;"/>
+              <cdr-img :src="media.util1" style="width: 640px;"/>
+              <hr/>
+              <cdr-img :src="media.util2" style="width: 640px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="Elements">
@@ -151,6 +143,7 @@
               <li>Components that are a Cedar wrapper around native elements</li>
               <li>Accessibility and consistency</li>
               <li>Only use these components if you want the Cedar look and feel</li>
+              <hr/>
               <!-- <li>CdrButton, CdrCta, CdrLink, CdrText, CdrCheckbox, CdrIcon, CdrRadio, CdrInput, CdrSelect, CdrQuote, CdrCaption, CdrImg</li> -->
               <cdr-img
                 src="https://www.rei.com/assets/drsp/2018/q2/campaign/summer/chapter-4/rei-backpacking-bundle/live.jpg"
@@ -212,7 +205,7 @@
             <cdr-list modifier="unordered">
               <li>Core navigational elements that do not have a native equivalent</li>
               <li>More complex, but opinionated for a reason</li>
-
+              <hr/>
               <cdr-breadcrumb
                 :items="[
                   {item:{url:'', name: 'Clothing'}},
@@ -237,6 +230,7 @@
               <li>This gives designers and developers the flexibility to "compose" things out of re-usable elements</li>
               <li>As patterns emerge, they can be turned into shared components or possibly added to Cedar</li>
               <!-- <cdr-img :src="media.cont1" style="width: 480px;"/> -->
+              <hr/>
               <cdr-button
               @click="opened = true"
               aria-haspopup="dialog"
@@ -323,7 +317,7 @@
               <li>Allows consumers to pass in another component as a prop</li>
               <li>Especially useful for text content</li>
               <li>Ensures component can be re-used without modification</li>
-              <cdr-img :src="media.slots" style="width: 480px;"/>
+              <cdr-img :src="media.slots" style="width: 640px;"/>
             </cdr-list>
           </cdr-tab-panel>
 
@@ -355,13 +349,13 @@
               <li>Break big component into smol components</li>
               <li>Do not build a "library" (though if you must, talk to me)</li>
 
-              <cdr-img :src="media.actcard" style="width: 480px;"/>
+              <cdr-img :src="media.actcard" style="width: 320px;"/>
             </cdr-list>
           </cdr-tab-panel>
 
           <cdr-tab-panel name="Shape">
             <cdr-list modifier="unordered">
-              <li>Do not strictly bind your component to the API of other libraries</li>
+              <li>Do not strictly bind your component to the API of other libraries, practice "Composition over Inheritance"</li>
               <li>Do not use the Vue `extends` property to modify Cedar components</li>
               <li>Do not design the API of your component to match your exact business needs</li>
               <li>Expose an API that makes sense for your component, translate those props for any sub-components</li>
@@ -415,25 +409,25 @@
               <li>Follow Semver</li>
               <li>Use `npm version patch/minor/major` rather than manually bumping package version</li>
               <li>Use `git push --follow-tags` to push up tags</li>
+              <li>Ensures consumers won't accidentally pull in a breaking update</li>
+              <li>Allows you to figure out exactly what source code was used to compile a version of this component</li>
               <cdr-img :src="media.vers" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="exports">
             <cdr-list modifier="unordered">
-              <li>main/module/style communicate to rollup/webpack what files to load</li>
-              <li>cjs, esm, css. there are others</li>
-              <li>these are being set by the febs build</li>
-              <li>files: dist, only publish contents of dist (and package.json, README, etc.)</li>
+              <li>These are being set by febs, should be the same in every package</li>
+              <li>`main`, `module`, and `style`, communicate what files are being distributed</li>
+              <li>`files` must be configured to publish the contents of `/dist`</li>
               <cdr-img :src="media.main" style="width: 480px;"/>
             </cdr-list>
 
           </cdr-tab-panel>
           <cdr-tab-panel name="dev">
             <cdr-list modifier="unordered">
-              <li>Scripts mostly wrapping febs commands</li>
-              <li>dev build: rollup server and webpack demo</li>
-              <li>webpack/rollup woes</li>
-              <li>Demo.vue to isolate demo logic, make it easier for cedar :3</li>
+              <li>Scripts should mostly be wrapping febs and vunit commands</li>
+              <li>Uses the febs `component` profile to build the source code, and the `application` profile to build the demo/dev environment</li>
+              <li>Isolate demo logic to a Demo.vue file rather than inlining it in local-development.js</li>
               <cdr-img :src="media.dev" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
@@ -441,18 +435,16 @@
             <cdr-list modifier="unordered">
               <li>Lets you load yr package as a git dependency</li>
               <li>In a micro-site or another component, you can point to a branch of yr package and load it as if it were published</li>
-              <li>However, since dist is not checked into repo, you must add this prepare script so it is created</li>
               <cdr-img :src="media.gitdep" style="width: 640px;"/>
               <cdr-img :src="media.prepare" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="deps">
             <cdr-list modifier="unordered">
-              <li>Dependencies are needed at runtime, we want them to be resolved at the top (babel polyfills, shared components, utilities)</li>
+              <li>Dependencies are needed at runtime, we want them to be resolved by the micro-site that deploys this code (babel polyfills, shared components, utilities)</li>
               <li>DevDependencies are not needed at runtime (test, lint, dev, build)</li>
-              <li>Dependencies will not be bundled into yr `/dist` folder, allowing the consuming application to resolve them</li>
-              <li>Only get 1 copy of each polyill, cedar component, lodash helper, etc. that are used in your micro-site</li>
-              <li>browserslist controls which polyfills to include, needs more oversight</li>
+              <li>Dependencies will not be bundled into yr `/dist` folder, allowing the consuming micro-site to resolve them</li>
+              <li>Ensures you only get 1 copy of each polyill, cedar component, lodash helper, etc. that are used in your micro-site</li>
               <cdr-img :src="media.deps" style="width: 480px;"/>
             </cdr-list>
 
@@ -470,8 +462,8 @@
 
           <cdr-tab-panel name="CSS">
             <cdr-list modifier="unordered">
-              <li>@import url() for .css files you depend on, whether it is Cedar or another shared component</li>
-              <li>@import '~@rei/cdr-tokens/etc.' for scss tokens/variables</li>
+              <li>For .css files that your package depends on, use `@import url()`</li>
+              <li>For scss tokens/mixins/variables use plain imports `@import '~@rei/cdr-tokens/etc.'</li>
               <li>Webpack/NPM will resolve which version to load, so practice good semver</li>
               <!-- <cdr-img :src="media.csssrc" style="width: 640px;"/> -->
               <cdr-img :src="media.cssbuilt" style="width: 640px;"/>

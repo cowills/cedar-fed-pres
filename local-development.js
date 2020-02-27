@@ -43,6 +43,7 @@ import vers from './static/vers.png';
 
 
 import flux from './static/flux.png';
+import curb from './static/curb.jpg';
 
 import gridutil from './static/gridutil.png';
 
@@ -86,6 +87,7 @@ new Vue({
         intro,
         jsbuilt,
         jssrc,
+        curb,
         main,
         // nav1,
         // nav2,
