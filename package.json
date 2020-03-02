@@ -17,6 +17,8 @@
     "dev:build": "cross-env NODE_ENV=dev BABEL_ENV=es rollup -c --watch",
     "dev:clean": "rimraf dist && npm run dev",
     "dev": "npm-run-all -p dev:build dev:server",
+    "build-compy": "cross-env NODE_ENV=prod BABEL_ENV=es rollup -c", 
+    "build": "febs prod",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "test": "vunit --spec=./test/**/*.spec.js",

@@ -32,7 +32,7 @@
           <li>Grew up in the Bay Area, moved to Seattle 4 years ago</li>
           <li>Studied politics and sociology at UC Santa Cruz</li>
           <li>Drove trucks and delivered mail before getting into web dev</li>
-          <li>Passionate about music</li>
+          <li>Passionate about all things music</li>
           <li>Previously worked at Amazon, Capital One, a consulting agency, REI Experiences</li>
           <li>Focused on the Cedar build system</li>
         </cdr-list>
@@ -79,6 +79,17 @@
                 </span>
               </li>
               <!-- <cdr-img :src="media.curb" width="320px;"/> -->
+            </cdr-list>
+          </cdr-tab-panel>
+
+          <cdr-tab-panel name="How we operate">
+            <cdr-list modifier="unordered">
+              <li>Cedar needs to be used everywhere</li>
+              <li>All changes to the system go through a discovery, design, development, and testing process</li>
+              <li>Weekly intake meeting to address consumer feedback</li>
+              <li>Weekly critique meetings where the Cedar devs and designers discuss what we are building</li>
+              <li>Quarterly releases, generally a new major or minor version of the component repo</li>
+              <li>Patch releases to fix bugs that are high impact or have no workaround</li>
             </cdr-list>
           </cdr-tab-panel>
 
@@ -204,7 +215,8 @@
           <cdr-tab-panel name="Navigation">
             <cdr-list modifier="unordered">
               <li>Core navigational elements that do not have a native equivalent</li>
-              <li>More complex, but opinionated for a reason</li>
+              <li>Complex components that will always have certain business logic</li>
+              <li>Opinionated for a reason, we don't want teams building variations of these</li>
               <hr/>
               <cdr-breadcrumb
                 :items="[
@@ -314,7 +326,7 @@
           <cdr-tab-panel name="Slots">
             <cdr-list modifier="unordered">
               <li>Use slots for content whenever possible</li>
-              <li>Allows consumers to pass in another component as a prop</li>
+              <li>Essentially lets someone pass in another component as a "prop"</li>
               <li>Especially useful for text content</li>
               <li>Ensures component can be re-used without modification</li>
               <cdr-img :src="media.slots" style="width: 640px;"/>
@@ -323,12 +335,9 @@
 
           <cdr-tab-panel name="Events">
             <cdr-list modifier="unordered">
-              <li>Emit events rather than binding functions or hardcoding behavior</li>
-              <li>Components should accept props, emit events, and have no side effects</li>
-              <li>Means components are testable, understandable, modular</li>
-              <li>Your component should not know where it's props/data is coming from</li>
-              <li>Your component should not know what is happening to the events it emits</li>
-              <li>Your component should never know what Vuex or AJAX are</li>
+              <li>Components should follow the "Flux" architecture: accept props, emit events, and have no side effects</li>
+              <li>Makes components testable, understandable, and modular, as business logic stays separate from the view layer</li>
+              <li>Your component should not know what Vuex or AJAX are, or where it's props/data is coming from, or what happens to the events it emits</li>
               <cdr-img :src="media.flux" style="width: 320px;"/>
             </cdr-list>
           </cdr-tab-panel>
@@ -355,11 +364,10 @@
 
           <cdr-tab-panel name="Shape">
             <cdr-list modifier="unordered">
-              <li>Do not strictly bind your component to the API of other libraries, practice "Composition over Inheritance"</li>
+              <li>Practice "Composition over Inheritance", avoiding binding your component to the API of other libraries</li>
               <li>Do not use the Vue `extends` property to modify Cedar components</li>
-              <li>Do not design the API of your component to match your exact business needs</li>
+              <li>Avoid hardcoding unique business logic in shared components</li>
               <li>Expose an API that makes sense for your component, translate those props for any sub-components</li>
-
               <cdr-img :src="media.extendss" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
@@ -368,8 +376,6 @@
             <cdr-list modifier="unordered">
               <li>Use cedar tokens whenever possible when styling rather than creating custom variables</li>
               <li>If your project does have unique values that are not in cedar, create semantic variables for those styles so they can be updated later</li>
-              <li>semantic variable: $detail-card-background-color</li>
-              <li>generic variable: $color-black</li>
               <cdr-img :src="media.semantics" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
@@ -378,8 +384,8 @@
             <cdr-list modifier="unordered">
               <li>Sometimes you need a utility function more than a component</li>
               <li>Don't make a shared component until there is an opportunity to re-use it</li>
-              <cdr-img :src="media.gridtemp" style="width: 320px;"/>
-              <cdr-img :src="media.gridutil" style="width: 320px;"/>
+              <!-- <cdr-img :src="media.gridtemp" style="width: 320px;"/> -->
+              <cdr-img :src="media.gridutil" style="width: 480px;"/>
             </cdr-list>
           </cdr-tab-panel>
         </presentation-section>
@@ -402,6 +408,7 @@
               <li>Use @rei/febs for your build and @rei/vunit for testing</li>
               <li>Your micro-site might need to be customized, but rarely should a shared component deviate from the standard build system</li>
               <li>Having a consistent architecture makes it easier to incrementally improve the system</li>
+              <li>@rei/component template can be used to generate a new component package</li>
             </cdr-list>
           </cdr-tab-panel>
           <cdr-tab-panel name="version">
@@ -476,6 +483,33 @@
 
       </div>
     </cdr-accordion>
+
+
+    <cdr-accordion
+      id="conclusion"
+      :opened="conclusion"
+      @accordion-toggle="conclusion = !conclusion"
+    >
+      <template slot="label">
+        outro
+      </template>
+      <div>
+        <presentation-section title="conclusion" class="paginated paginated-active" id="package">
+          <cdr-tab-panel name="in conclusion...">
+            <cdr-list modifier="unordered">
+              <li>Use the standard architecture as much as possible</li>
+              <li>Call out micro-site misconceptions when you see them</li>
+              <li>Don't be afraid to ask for help</li>
+              <hr/>
+              <li>Shout out to Joseph Nields and the Search team as well as Zachary Crumbo and Harmony Hames on the PDP team for surfacing a lot of these patterns</li>
+            </cdr-list>
+          </cdr-tab-panel>
+
+        </presentation-section>
+
+      </div>
+    </cdr-accordion>
+
   </div>
 </template>
 
@@ -506,6 +540,7 @@ export default {
       inputModel: '',
       inputAlert: false,
       intro: false,
+      conclusion: false,
       whatis: false,
       default1: false,
       dists: false,
