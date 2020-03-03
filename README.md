@@ -1,9 +1,7 @@
-TODO:
-https://git.rei.com/projects/ALP/repos/npm-package-template/browse
-- create conf page for package.json minimal version
-- make git dep update CLI tool
 
 
+Here's a copy of my presentation in case of Skype screen share issues: https://cowills.github.io/cedar-fed-pres/
+Also pasting a HUGE amount of relevant links in the thread below:
 
 ## Cedar Docs
 https://rei.github.io/rei-cedar-docs/ Cedar doc site
@@ -30,18 +28,29 @@ https://rei.slack.com/archives/CA58YCGN4/p1581702916101400 - If you need help wi
 ## REI tools
 https://chairlift.rei-cloud.com/ - Chairlift, used to generate the repo/pipeline/etc. for a component (select NPM package, though the template it uses is out of date)
 https://github.com/rei/component - Component template, use it to generate a new component package. Replace the generated chairlift code with the output of this generator.
+
 https://git.rei.com/projects/FEDPAGES/repos/climber-details-page/browse - climber-details-page is a reference implementation for shared components/FED pages
 https://git.rei.com/projects/CLIMB/repos/climbers-site/browse/climbers-site - climbers-site is a reference implementation for crampon micro-sites
+
 https://git.rei.com/projects/FEDPACK/repos/rei-febs/browse - febs source code
 https://git.rei.com/projects/FEDPACK/repos/rei-febs/browse/CHANGELOG.md - febs changelog
 https://github.com/rei/vunit - vunit, REI testing tool for Vue and vanilla JS
 
-## Vue tips
+## Vue Tips
 https://vuejs.org/v2/guide/components-slots.html - Vue Slots tutorial
 https://vuejs.org/v2/guide/components-custom-events.html - Emitting custom events
 https://vuejs.org/v2/guide/state-management.html - Flux state management
 https://thoughtbot.com/blog/reusable-oo-composition-vs-inheritance - Composition vs. Inheritance
+https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction - Duplication is far cheaper than the wrong abstraction
 
-## REI tips
+## REI Shared Component Tips
 https://confluence.rei.com/display/FED/Update+A+Shared+Component - How to release a new version of a shared component
 https://confluence.rei.com/display/FED/Test+a+Shared+Component+Without+Publishing - Loading a shared component as a git dependency/testing updates to a component
+
+
+
+I am also going to follow up on these action items:
+
+- Work with alpine to get the chairlift template updated: https://git.rei.com/projects/ALP/repos/npm-package-template/browse (ideally making this pull in the @rei/component template somehow)
+- Create confluence page that outlines how to generate a new shared component, and what is required in the package.json for a shared component
+- Publish CLI tool for updating git dependencies
