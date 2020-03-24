@@ -5,7 +5,7 @@ Also pasting a HUGE amount of relevant links in the thread below:
 
 ## Cedar Docs
 https://rei.github.io/rei-cedar-docs/ Cedar doc site
-https://rei.github.io/rei-cedar-docs/getting-started/as-a-developer/ Getting started as a developer guide. End to end walkthrough on using Cedar.
+https://rei.github.io/rei-cedar-docs/getting-started/as-a-developer/ Getting started as a developer guide. End to end walkthrough on using Cedar. Note: This is not a "for beginners guide", this document will always contain the current recommended Cedar usage.
 
 ## Cedar Repos
 https://github.com/rei/rei-cedar-tokens
@@ -26,8 +26,6 @@ https://rei.github.io/rei-cedar - cedar kitchen sink, a deployed version of our 
 https://rei.slack.com/archives/CA58YCGN4/p1581702916101400 - If you need help with cedar, supplying as much of this info as possible will allow us to help you faster
 
 ## REI tools
-https://chairlift.rei-cloud.com/ - Chairlift, used to generate the repo/pipeline/etc. for a component (select NPM package, though the template it uses is out of date)
-https://github.com/rei/component - Component template, use it to generate a new component package. Replace the generated chairlift code with the output of this generator.
 
 https://git.rei.com/projects/FEDPAGES/repos/climber-details-page/browse - climber-details-page is a reference implementation for shared components/FED pages
 https://git.rei.com/projects/CLIMB/repos/climbers-site/browse/climbers-site - climbers-site is a reference implementation for crampon micro-sites
